@@ -12,7 +12,7 @@ jobs:
 
       - run:
           name: Build
-          command: cd smart_home && mvn install clean package
+          command: ls -al && mvn install clean package
       - run:
           name: Scp Jar Archive to AWS
           command: scp smart-home/target*.jar $SSH_USER@$SSH_HOST:/home/ec2-user/smart_home/app.jar
