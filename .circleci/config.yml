@@ -15,11 +15,11 @@ jobs:
           command: cd smart-home && mvn install clean package
       - run:
           name: Scp Jar Archive to AWS
-          command: scp smart-home/target*.jar $SSH_USER@$SSH_HOST:/home/ec2-user/smart_home/app.jar
+          command: -o StrictHostKeyChecking=accept-new  scp smart-home/target*.jar $SSH_USER@$SSH_HOST:/home/ec2-user/smart_home/app.jar
 
       - run:
           name: Scp deploy.sh to AWS
-          command: scp -o StrictHostKeyChecking=accept-new  deploy.sh $SSH_USER@$SSH_HOST:/home/ec2-user/smart_home/deploy.sh
+          command: scp -o StrictHostKeyChecking=accept-new deploy.sh $SSH_USER@$SSH_HOST:/home/ec2-user/smart_home/deploy.sh
 
       - run:
           command: ssh -o StrictHostKeyChecking=accept-new $SSH_USER@$SSH_HOST "cd smart_home && chmod +x deploy.sh && source deploy.sh"
