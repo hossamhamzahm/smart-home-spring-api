@@ -5,14 +5,14 @@ jobs:
     docker:
       - image: cimg/openjdk:19.0.1
     steps:
-      - checkout
+#      - checkout
       - add_ssh_keys:
           fingerprints:
             - "43:ee:94:fe:3f:9e:46:c8:36:bb:7c:e9:5a:ae:b5:6a"
 
-      - run:
-          name: Build
-          command: cd smart-home && mvn install clean package
+#      - run:
+#          name: Build
+#          command: cd smart-home && mvn install clean package
       - run:
           name: Scp Jar Archive to AWS
           command: scp -o StrictHostKeyChecking=accept-new smart-home/target*.jar $SSH_USER@$SSH_HOST:/home/ec2-user/smart_home/app.jar
