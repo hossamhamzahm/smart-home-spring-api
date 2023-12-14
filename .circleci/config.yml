@@ -10,14 +10,6 @@ jobs:
             - "43:ee:94:fe:3f:9e:46:c8:36:bb:7c:e9:5a:ae:b5:6a"
 
       - run:
-          name: Scp Jar Archive to AWS
-          command: scp -vvv -o StrictHostKeyChecking=accept-new smart-home/target*.jar $SSH_USER@$SSH_HOST:/home/ec2-user/smart_home/app.jar
-
-      - run:
-          name: Scp deploy.sh to AWS
-          command: scp -o StrictHostKeyChecking=accept-new deploy.sh $SSH_USER@$SSH_HOST:/home/ec2-user/smart_home/deploy.sh
-
-      - run:
           command: ssh -o StrictHostKeyChecking=accept-new $SSH_USER@$SSH_HOST "cd smart_home && chmod +x deploy.sh && source deploy.sh"
           name: Run Server
 
