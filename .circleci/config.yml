@@ -26,6 +26,6 @@ jobs:
           name: Run Server
 
 workflows:
-  build-and-test:
+  build:
     jobs:
       - build
