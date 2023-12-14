@@ -19,7 +19,7 @@ jobs:
 
       - run:
           name: Scp deploy.sh to AWS
-          command: scp deploy.sh $SSH_USER@$SSH_HOST:/home/ec2-user/smart_home/deploy.sh
+          command: scp -o StrictHostKeyChecking=accept-new  deploy.sh $SSH_USER@$SSH_HOST:/home/ec2-user/smart_home/deploy.sh
 
       - run:
           command: ssh -o StrictHostKeyChecking=accept-new $SSH_USER@$SSH_HOST "cd smart_home && chmod +x deploy.sh && source deploy.sh"
