@@ -1,0 +1,18 @@
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+
+.idea
+*.iws
+*.iml
+*.ipr
+.mvn
+mvnw*
+
+
+# Log file
+*.log*
+
+/bin/
+/build/
+*.jar
+*.war

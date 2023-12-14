@@ -1,0 +1,28 @@
+services:
+  db:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: spring_user
+      MYSQL_PASSWORD: spring_password
+      MYSQL_DATABASE: smart_home
+    ports:
+      - "3366:3306"
+
+  node-alpine:
+    container_name: schedule_generator_api
+  # su_node:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # networks:
+    #   - db_default
+    network_mode: db_default
+    # volumes:
+    #   - .:/app
+    environment:
+      DB_HOST: schedule_generator_db
+      DB_PORT: 3306
+    # working_dir: /app
+    ports:
+      - "3000:3000"
