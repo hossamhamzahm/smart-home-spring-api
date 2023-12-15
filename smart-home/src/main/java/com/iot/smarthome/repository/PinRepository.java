@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import java.util.List;
 
 @Repository
-@CrossOrigin("*")
+@CrossOrigin
 public interface PinRepository extends JpaRepository<Pin, String> {
     @Query("SELECT p FROM Pin p WHERE p.board = ?1")
     public List<Pin> findByBoard(String board);

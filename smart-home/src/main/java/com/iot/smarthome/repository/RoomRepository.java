@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Repository
-@CrossOrigin("*")
+@CrossOrigin
 public interface RoomRepository extends JpaRepository<Room, String> {
 }
