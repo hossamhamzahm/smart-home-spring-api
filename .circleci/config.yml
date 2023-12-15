@@ -17,10 +17,11 @@ jobs:
     docker:
       - image: cimg/openjdk:19.0.1
     steps:
-      - checkout
       - add_ssh_keys:
           fingerprints:
-            - "43:ee:94:fe:3f:9e:46:c8:36:bb:7c:e9:5a:ae:b5:6a"
+            - "82:c7:cb:17:c7:59:2d:7b:b3:ab:db:22:e7:60:31:6c"
+
+      - checkout
 
       - run:
           name: Build
