@@ -23,7 +23,7 @@ jobs:
           command: scp -o StrictHostKeyChecking=accept-new deploy.sh $SSH_USER@$SSH_HOST:/home/ec2-user/smart-home/deploy.sh
 
       - run:
-          command: ssh -o StrictHostKeyChecking=accept-new $SSH_USER@$SSH_HOST "cd smart-home && chmod +x deploy.sh &&  nohup ./deploy.sh > foo.log 2> foo.err < /dev/null &"
+          command: ssh -o StrictHostKeyChecking=accept-new $SSH_USER@$SSH_HOST "cd smart-home && chmod +x deploy.sh && nohup ./deploy.sh >/dev/null 2>&1 &"
           name: Run Server
 
 workflows:
