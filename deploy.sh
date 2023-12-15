@@ -8,4 +8,4 @@ else
   echo "No Java process is found"
 fi
 
-java -jar app.jar &
+java -jar app.jar
