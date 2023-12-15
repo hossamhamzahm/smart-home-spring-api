@@ -10,32 +10,32 @@ jobs:
             - "82:c7:cb:17:c7:59:2d:7b:b3:ab:db:22:e7:60:31:6c"
 
       - run:
-          command: ssh -o StrictHostKeyChecking=accept-new $SSH_USER@$SSH_HOST "cd smart_home && chmod +x deploy.sh && source deploy.sh"
+          command: ssh -o StrictHostKeyChecking=accept-new $SSH_USER@$SSH_HOST "cd smart-home && echo "Done"
           name: Run Server
 
   build:
     docker:
       - image: cimg/openjdk:19.0.1
     steps:
+      - checkout
+
       - add_ssh_keys:
           fingerprints:
             - "82:c7:cb:17:c7:59:2d:7b:b3:ab:db:22:e7:60:31:6c"
-
-      - checkout
 
       - run:
           name: Build
           command: cd smart-home && mvn install clean package
       - run:
           name: Scp Jar Archive to AWS
-          command: scp -vvv -o StrictHostKeyChecking=accept-new smart-home/target*.jar $SSH_USER@$SSH_HOST:/home/ec2-user/smart_home/app.jar
+          command: scp -o StrictHostKeyChecking=accept-new smart-home/target/*.jar $SSH_USER@$SSH_HOST:/home/ec2-user/smart-home/app.jar
 
       - run:
           name: Scp deploy.sh to AWS
-          command: scp -o StrictHostKeyChecking=accept-new deploy.sh $SSH_USER@$SSH_HOST:/home/ec2-user/smart_home/deploy.sh
+          command: scp -o StrictHostKeyChecking=accept-new deploy.sh $SSH_USER@$SSH_HOST:/home/ec2-user/smart-home/deploy.sh
 
       - run:
-          command: ssh -o StrictHostKeyChecking=accept-new $SSH_USER@$SSH_HOST "cd smart_home && chmod +x deploy.sh && source deploy.sh"
+          command: ssh -o StrictHostKeyChecking=accept-new $SSH_USER@$SSH_HOST "cd smart-home && chmod +x deploy.sh && source deploy.sh"
           name: Run Server
 
 workflows:
