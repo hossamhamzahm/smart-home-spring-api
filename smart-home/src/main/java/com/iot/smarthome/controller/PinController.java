@@ -41,6 +41,7 @@ public class PinController {
 //    }
 
     @PatchMapping("/{id}/consumption")
+    @CrossOrigin
     public void update_consumption(@PathVariable String id, @RequestBody ConsumptionRequestDTO consumption_body){
         Pin pin = pinService.findById(id);
         Double total = pin.getConsumption();
